@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 function App() {
   const [drinksData, setDrinksData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:9292/")
+    fetch("http://localhost:9292/drinks")
       .then((r) => r.json())
       .then((Data) => {
         setDrinksData(Data);
@@ -17,7 +17,7 @@ function App() {
   return (
     <div>
       <Navbar/>
-      <MainContainer/>
+      <MainContainer data={drinksData}/>
       <Aside/>
     </div>
   

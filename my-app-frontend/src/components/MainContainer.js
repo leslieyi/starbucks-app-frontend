@@ -1,6 +1,6 @@
-function MainContainer() {
+function MainContainer({data}) {
     return( 
-        <h1>drinks will render here</h1>
+        <h1>drinks will render here from Lex</h1>
     )
 }
 
