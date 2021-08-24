@@ -3,11 +3,13 @@ import Cart from "./Cart";
 import { Menu } from 'semantic-ui-react'
 
 function Navbar({ isLoggedIn, user, cartDrinks }) {
-
+  // const { avatar: avatar, name: name } = user;
+  console.log(user)
   return (
     <Menu>
       {user ? 
       <>
+      <img src={user.avatar} style={{width: "10px", height: "10px"}}/>
         <Menu.Item>Hello, {user.name}!</Menu.Item>
         <Menu.Item>Logout</Menu.Item>
       </>

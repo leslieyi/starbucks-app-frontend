@@ -68,10 +68,10 @@ function App() {
     //   console.log('Error:', error);
     // });
   }
-
   return (
     <div>
       <Navbar user={user} isLoggedIn={isLoggedIn} cartDrinks={cartDrinks} />
+  
       <Link to="/">
         <Segment>
           <Header as='h2' textAlign='center'>
