@@ -1,6 +1,13 @@
+import Drink from './Drink'
+
 function MainContainer({data}) {
+    
     return( 
-        <h1>drinks will render here from Lex</h1>
+        <div className = 'drink-container'>
+        {data.map(drink => {
+           return <Drink drink= {drink}/>
+        })}
+        </div>
     )
 }
 

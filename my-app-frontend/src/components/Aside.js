@@ -4,9 +4,13 @@ function Aside() {
 
     
   return (
-  <h1>Hi from Aside</h1>
-    
-    
+      <div className = 'aside' >
+          <div style={{borderStyle: 'solid'}}>
+              <h1>Drinks</h1>
+              <p>Hello from aside</p>
+
+          </div>
+      </div>
     
     
     )

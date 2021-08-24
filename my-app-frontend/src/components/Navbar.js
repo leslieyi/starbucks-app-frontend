@@ -1,12 +1,14 @@
-import { Route, Switch, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import LogInPage from "./LogInPage";
 import Cart from "./Cart";
 function Navbar() {
   return (
-    <div>
+    <nav>
       <LogInPage />
-      <Cart />
-    </div>
+      <h1>Hi from Navbar</h1>
+      <Link to='/cart'>Cart</Link>
+      <Link strict to='/'>Home</Link>
+    </nav>
   );
 }
 export default Navbar;
