@@ -1,13 +1,14 @@
 import Navbar from "./Navbar";
 import MainContainer from './MainContainer';
-import LogInPage from "./LogInPage";
-import Cart from "./Cart"
 import Aside from "./Aside"
-import Register from "./Register"
-import { useState, useEffect } from "react";
-import { Route, Switch } from 'react-router-dom';
 import Cart from './Cart';
+import { useState, useEffect } from "react";
+import { Route, Switch, Link} from 'react-router-dom';
+import { Header, Segment } from 'semantic-ui-react'
 
+//npm i && npm start
+//npm install react-router-dom
+//npm install semantic-ui-react semantic-ui-css
 
 function App() {
   const [drinksData, setDrinksData] = useState([]);
@@ -20,27 +21,30 @@ function App() {
   }, []);
 
   return (
-    <>
-      <header>
-        <Navbar />
-        <Switch>
-          <Route exact path="/login">
-            <LogInPage />
-          </Route>
-          <Route exact path="/cart">
-            <Cart />
-          </Route>
-          <Route exact path="/register">
-            <Register />
-          </Route>
-          <Route exact path ='/'>
-            <MainContainer data = {drinksData}/>
-          </Route>
-        </Switch>
-      </header>
-      <MainContainer data={drinksData}/>
+    <div>
+      <Navbar />
+      <Link to="/">
+        <Segment>
+          <Header as='h2' textAlign='center'>
+            ~~~Welcome to Starbucks~~~
+          </Header>
+        </Segment>
+      </Link>
       <Aside/>
-    </>
+
+      <Switch>
+        <Route exact path='/cart'>
+          <Cart/>
+        </Route>
+        <Route exact path ='/'>
+          <MainContainer data = {drinksData}/>
+        </Route>
+
+        <Route path="*">
+          <h1>404 not found</h1>
+        </Route>
+      </Switch>
+    </div>
   
   )
   
