@@ -1,7 +1,7 @@
 import MainContainer from "./MainContainer";
 function HomePage() {
   return (
-    <div>
+    <div >
         <MainContainer />
     </div>
   );

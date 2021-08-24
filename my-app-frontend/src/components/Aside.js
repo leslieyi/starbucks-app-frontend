@@ -3,7 +3,6 @@ import { Menu } from "semantic-ui-react";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-
 function Aside() {
   const [categoryData, setCategoryData] = useState([]);
   useEffect(() => {
@@ -24,12 +23,12 @@ function Aside() {
   }, []);
 
   return (
-    <Menu vertical>
+
+    <Menu vertical floated='left' width={5}>
       {categoryData.map((category) => (
         <Menu.Item>
           <Menu.Header>{category.name}</Menu.Header>
           <Menu.Menu>
-            {" "}
             {drinksData
               .filter((drink) => drink.category_id == category.id)
               .map((drink) => (
@@ -41,7 +40,8 @@ function Aside() {
         </Menu.Item>
       ))}
     </Menu>
-  );
+    )
+
 }
 
 export default Aside;

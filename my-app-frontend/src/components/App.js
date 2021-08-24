@@ -2,17 +2,21 @@ import Navbar from "./Navbar";
 import HomePage from "./HomePage";
 import Aside from "./Aside"
 import { Link, Route, Switch } from "react-router-dom";
+import { Header, Segment } from 'semantic-ui-react'
+
 
 function App() {
   return (
     <div>
       <Navbar />
-      <Aside/>
       <Link to="/">
-        <h1 class="ui header" style={{ justifyContent: "center" }}>
-          Welcome to Starbucks
-        </h1>
+        <Segment>
+          <Header as='h2' textAlign='center'>
+            ~~~Welcome to Starbucks~~~
+          </Header>
+        </Segment>
       </Link>
+      <Aside/>
 
       <Switch>
         <Route exact path="/">
