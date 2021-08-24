@@ -1,29 +1,29 @@
 import Navbar from "./Navbar";
-import MainContainer from './MainContainer';
+import HomePage from "./HomePage";
 import Aside from "./Aside"
-import { useState, useEffect } from "react";
-
+import { Link, Route, Switch } from "react-router-dom";
 
 function App() {
-  const [drinksData, setDrinksData] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:9292/drinks")
-      .then((r) => r.json())
-      .then((Data) => {
-        setDrinksData(Data);
-      });
-  }, []);
-
   return (
     <div>
-      <Navbar/>
-      <MainContainer data={drinksData}/>
+      <Navbar />
       <Aside/>
+      <Link to="/">
+        <h1 class="ui header" style={{ justifyContent: "center" }}>
+          Welcome to Starbucks
+        </h1>
+      </Link>
+
+      <Switch>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
+        <Route path="*">
+          <h1>404 not found</h1>
+        </Route>
+      </Switch>
     </div>
-  
-  )
-  
+  );
 }
 
 export default App;
-
