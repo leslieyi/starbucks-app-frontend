@@ -69,3 +69,8 @@ li {
   padding-top: 60px; 
   transition: 0.5s; 
 }
+
+img{
+  height: 200px;
+  width: 200px;
+}

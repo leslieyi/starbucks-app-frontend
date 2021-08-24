@@ -3,8 +3,10 @@ import { Redirect } from "react-router-dom";
 const axios = require('axios');
 
 function LogInPage(){
+    const [user, setUser] = useState()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [isLoggedIn, setIsloggedIn] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -14,13 +16,19 @@ function LogInPage(){
         })
         .then(function (response) {
             if(response.data.error){
-                
+                alert(response.data.error)
+            }
+            else{
+                setUser(response.data)
+                return <Redirect to='/' />
             }
         })
         .catch(function (error) {
           console.log(error);
         });
     }
+
+    console.log(user)
     return (
         <div id = 'login-form-wrapper'>
             <form onSubmit={handleSubmit}>
@@ -34,6 +42,7 @@ function LogInPage(){
                     onChange={e => setEmail(e.target.value)}
                     required />
                 </label>
+                <br/>
 
                 <label>
                     Password:

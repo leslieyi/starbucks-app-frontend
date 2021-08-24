@@ -5,7 +5,7 @@ function Navbar() {
 
   return (
     <nav>
-      <LogInPage />
+      {/* <LogInPage /> */}
       <h1>Hi from Navbar</h1>
       <Link to='/cart'>Cart</Link>
       <Link strict to='/'>Home</Link>
