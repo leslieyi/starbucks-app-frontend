@@ -1,27 +1,20 @@
-import { Route, Switch, Link} from 'react-router-dom';
 import { useParams } from 'react-router-dom'
+import ShowOneDrink from './ShowOneDrink'
 
-function ShowDrinks({data}){
+
+function ShowDrinks({data, makeCart}){
     const { id } = useParams();
-
-    // data.find((drink)=> drink.id === params.id)
-
+    const potato = data.filter((item) => item.id === parseInt(id))
     
-    
-    const lmao = data.find((item) => item.id === parseInt(id))
-
-    return lmao ? (
+    // lmao ? 
+    return (
         <>
-        <h1>{lmao.name}</h1>
-        <p>Price: ${lmao.price}</p>
-        <p>{lmao.categories}</p>
-        <p>Ingredients: {lmao.ingredients}</p>
-        <p>{lmao.calories}</p>
-        <img src={lmao.url}/>
+       {potato.map((lmao) => {
+    return <ShowOneDrink key={lmao.id} potato={potato} lmao={lmao} makeCart={makeCart}/>})}
+       
+    {/* // :
+    // null; */}
         </>
-    )
-    :
-    null;
-}
+    )}
 
 export default ShowDrinks;

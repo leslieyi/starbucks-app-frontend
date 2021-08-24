@@ -2,6 +2,7 @@ import Navbar from "./Navbar";
 import MainContainer from './MainContainer';
 import Aside from "./Aside"
 import Cart from './Cart';
+import RecentOrders from './RecentOrders';
 import LogInPage from './LogInPage'
 import Register from './Register'
 import ShowDrinks from './ShowDrinks'
@@ -16,6 +17,11 @@ import { Header, Segment } from 'semantic-ui-react'
 
 function App() {
   const [drinksData, setDrinksData] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [cartDrinks, setCartDrinks] = useState([])
+  const [user, setUser] = useState()
+  const [ordersData, setOrdersData] = useState([])
+
   useEffect(() => {
     fetch("http://localhost:9292/drinks")
       .then((r) => r.json())
@@ -24,16 +30,52 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    if(isLoggedIn){
+      fetch("http://localhost:9292/orders")
+        .then((r) => r.json())
+        .then((data) => {
+          const datas = data.filter(order => {
+            console.log(order)
+            console.log(user)
+            return order.customer_id === user.id
+          })
+          setOrdersData(datas);
+        });
+    }
+  }, [user]);
+
   
-  // const [drinksData, setDrinksData] = useState([]);
+  function makeCart(drink){
+    setCartDrinks([...cartDrinks, drink])
+    // const data = {
+    //   customer_id: user.id,
+    //   drink_id: drink.id
+
+    // console.log(drink)
+    // fetch('http://localhost:9292/drinks_orders', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    // .then(response => response.json())
+    // .then(data => {
+    //   console.log('Success:', data);
+    // })
+    // .catch((error) => {
+    //   console.log('Error:', error);
+    // });
+  }
 
   return (
     <div>
-      <Navbar />
+      <Navbar user={user} isLoggedIn={isLoggedIn} cartDrinks={cartDrinks} />
       <Link to="/">
         <Segment>
           <Header as='h2' textAlign='center'>
-            ~~~Welcome to Starbucks~~~
+          ☕~~~Welcome to Starbucks~~~
           </Header>
         </Segment>
       </Link>
@@ -41,7 +83,7 @@ function App() {
 
       <Switch>
         <Route exact path='/cart'>
-          <Cart/>
+          <Cart cartDrinks= {cartDrinks} setCartDrinks={setCartDrinks}/>
         </Route>
 
         <Route exact path ='/'>
@@ -51,20 +93,23 @@ function App() {
         </Route>
 
         <Route exact path ='/login'>
-          <LogInPage/>
+          <LogInPage setUser={setUser} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
         </Route>
 
         <Route exact path ='/register'>
           <Register/>
         </Route>
+        <Route exact path ='/recent-orders'>
+          <RecentOrders ordersData={ordersData} user={user}/>
+        </Route>
+         
 
         <Route path = '/drinks/:id'>
           {drinksData.length === 0 ? null :
-          <ShowDrinks data = {drinksData}/>
+          <ShowDrinks data = {drinksData} 
+          makeCart={makeCart}/>
           }
         </Route>
-
-        {/* path={`${match.url}/:drinksID` */}
 
         <Route path="*">
           <h1>404 not found</h1>

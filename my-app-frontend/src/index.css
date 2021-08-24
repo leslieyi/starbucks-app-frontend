@@ -31,6 +31,7 @@ code {
   float: left;
   margin: 10px;
   text-align: center;
+  margin-bottom: 40px;
 }
 button{
   background-color: white;
@@ -62,7 +63,7 @@ li {
   z-index: 1;
   top: 0; 
   left: 0;
-  color: black;
+  /* color: black; */
   /* border-color: #111; */
   border: 10px; 
   overflow-x: hidden; 
@@ -71,6 +72,11 @@ li {
 }
 
 img{
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
+}
+.card-img {
+  width: 150px;
+  height: 150px;
+  background-size: cover;
 }

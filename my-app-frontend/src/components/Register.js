@@ -18,7 +18,7 @@ export default function Register() {
         })
         .then(function (response) {
             if(response.data.error){
-                console.log(response.data.error)
+                alert(response.data.error)
                 
             }else {
                 console.log(response)

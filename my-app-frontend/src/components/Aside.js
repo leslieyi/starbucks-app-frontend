@@ -1,7 +1,7 @@
 import "semantic-ui-css/semantic.min.css";
 import { Menu } from "semantic-ui-react";
 import { useState, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 
 function Aside({setDrinksData, drinksData}) {
   const [categoryData, setCategoryData] = useState([]);
@@ -13,26 +13,19 @@ function Aside({setDrinksData, drinksData}) {
       });
   }, []);
 
- 
-  useEffect(() => {
-    fetch("http://localhost:9292/drinks")
-      .then((r) => r.json())
-      .then((data) => {
-        setDrinksData(data);
-      });
-  }, []);
+
 
   return (
-    <Menu vertical floated='left' width={5}>
+    <Menu vertical floated='left' width={5} key={Math.random()}>
       {categoryData.map((category) => (
-        <Menu.Item key={category.id}>
+        <Menu.Item >
           <Menu.Header>{category.name}</Menu.Header>
-          <Menu.Menu>
+          <Menu.Menu >
             {drinksData
-              .filter((drink) => drink.category_id == category.id)
+              .filter((drink) => drink.category_id === category.id)
               .map((drink) => ( 
                 <NavLink to={`/drinks/${drink.id}`} >
-                  <Menu.Item key={drink.id} >{drink.name}</Menu.Item>
+                  <Menu.Item key={drink.index} >{drink.name}</Menu.Item>
                 </NavLink>
               ))}
           </Menu.Menu>

@@ -2,11 +2,10 @@ import { useState } from "react";
 import { Redirect } from "react-router-dom";
 const axios = require('axios');
 
-function LogInPage(){
-    const [user, setUser] = useState()
+function LogInPage({ setUser, setIsLoggedIn, isLoggedIn }){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [isLoggedIn, setIsloggedIn] = useState(false)
+    
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -19,45 +18,49 @@ function LogInPage(){
                 alert(response.data.error)
             }
             else{
+                setIsLoggedIn(true)
                 setUser(response.data)
-                return <Redirect to='/' />
             }
         })
         .catch(function (error) {
           console.log(error);
         });
     }
+    if(isLoggedIn){
+        return (
+            <Redirect to='/' />
+        )
+    }else{
+        return (
+            <div id = 'login-form-wrapper'>
+                <form onSubmit={handleSubmit}>
+                    <h1>Login</h1>
+                    <label>
+                        Email:
+                        <input
+                        name="email"
+                        type="email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        required />
+                    </label>
+                    <br/>
 
-    console.log(user)
-    return (
-        <div id = 'login-form-wrapper'>
-            <form onSubmit={handleSubmit}>
-                <h1>Login</h1>
-                <label>
-                    Email:
-                    <input
-                    name="email"
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    required />
-                </label>
-                <br/>
+                    <label>
+                        Password:
+                        <input
+                        name="password"
+                        type="password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        required />
+                    </label>
 
-                <label>
-                    Password:
-                    <input
-                    name="password"
-                    type="password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    required />
-                </label>
-
-                <button>Submit</button>
-            </form>
-        </div>
-    )
+                    <button>Submit</button>
+                </form>
+            </div>
+        )
+    }
 }
 
 export default LogInPage;

@@ -1,24 +1,14 @@
-import {useState} from 'react'
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Drink ({drink}){
-    const [isClicked, setIsClicked]=useState(false)
-    
-
-    // function handleButton(){
-    //     // return <Redirect to={`drinks/${drink.id}`}/>
-    //     setIsClicked(!isClicked)
-    //     // isClicked ? 
-    //     // <Redirect to={`drinks/${drink.id}`}/> : null
-    //     //set state for cart functionality here with drink
-    // }
     return(
-        <div className = 'drink-card' style={{borderStyle: 'solid'}}>
+        <div className = 'drink-card' >
             <ul className = 'drink-ul'>
-                <li style={{ color: 'black', fontWeight: 'bold' }}>{drink.name}</li>
+                
                 
                 <Link to={`drinks/${drink.id}`}>
-                    <button>Pick Me!</button>
+                <img alt={"drinks"} className = 'card-img' src={drink.url}/>
+                <li style={{ color: 'black', fontWeight: 'bold' }}>{drink.name}</li>
                 </Link>
                 </ul>
         </div>
