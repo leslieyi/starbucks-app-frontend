@@ -1,7 +1,11 @@
 import Navbar from "./Navbar";
 import MainContainer from './MainContainer';
+import LogInPage from "./LogInPage";
+import Cart from "./Cart"
 import Aside from "./Aside"
+import Register from "./Register"
 import { useState, useEffect } from "react";
+import { Route, Switch } from "react-router-dom";
 
 
 function App() {
@@ -15,11 +19,24 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <Navbar/>
+    <>
+      <header>
+        <Navbar />
+        <Switch>
+          <Route exact path="/login">
+            <LogInPage />
+          </Route>
+          <Route exact path="/cart">
+            <Cart />
+          </Route>
+          <Route exact path="/register">
+            <Register />
+          </Route>
+        </Switch>
+      </header>
       <MainContainer data={drinksData}/>
       <Aside/>
-    </div>
+    </>
   
   )
   
