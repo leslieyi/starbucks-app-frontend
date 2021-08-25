@@ -39,15 +39,12 @@ function App() {
 
   useEffect(() => {
     if(user){
-      fetch("http://localhost:9292/orders")
+      // Everytime ruby needs to know who is logged in, 
+      // we need {credentials: "include"}
+      fetch("http://localhost:9292/orders", {credentials: "include"})
         .then((r) => r.json())
         .then((data) => {
-          const datas = data.filter(order => {
-            console.log(order)
-            console.log(user)
-            return order.customer_id === user.id
-          })
-          setOrdersData(datas);
+          setOrdersData(data);
         });
     }
   }, [user]);
@@ -127,8 +124,7 @@ function App() {
           <h1>404 not found</h1>
         </Route>
       </Switch>
-    </div>
-  
+    </div>  
   )
   
 }
