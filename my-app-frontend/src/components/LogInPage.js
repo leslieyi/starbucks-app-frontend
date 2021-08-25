@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Redirect } from "react-router-dom";
 const axios = require('axios');
 
-function LogInPage({ setUser, setIsLoggedIn, isLoggedIn }){
+function LogInPage({ setUser, user }){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     
@@ -12,13 +12,12 @@ function LogInPage({ setUser, setIsLoggedIn, isLoggedIn }){
         axios.post(`${process.env.REACT_APP_API_URL}/login`, {
             email: email,
             password: password
-        })
+        }, {withCredentials: true})
         .then(function (response) {
             if(response.data.error){
                 alert(response.data.error)
             }
             else{
-                setIsLoggedIn(true)
                 setUser(response.data)
             }
         })
@@ -26,7 +25,7 @@ function LogInPage({ setUser, setIsLoggedIn, isLoggedIn }){
           console.log(error);
         });
     }
-    if(isLoggedIn){
+    if(user){
         return (
             <Redirect to='/' />
         )

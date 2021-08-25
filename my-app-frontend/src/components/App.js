@@ -17,10 +17,17 @@ import { Header, Segment, Image } from 'semantic-ui-react'
 
 function App() {
   const [drinksData, setDrinksData] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [cartDrinks, setCartDrinks] = useState([])
   const [user, setUser] = useState()
   const [ordersData, setOrdersData] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:9292/me", {credentials: "include"})
+    .then((r) => r.json())
+    .then((data) => {
+      setUser(data.user)
+    })
+  }, [])
 
   useEffect(() => {
     fetch("http://localhost:9292/drinks")
@@ -31,7 +38,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if(isLoggedIn){
+    if(user){
       fetch("http://localhost:9292/orders")
         .then((r) => r.json())
         .then((data) => {
@@ -48,29 +55,30 @@ function App() {
   
   function makeCart(drink){
     setCartDrinks([...cartDrinks, drink])
-    // const data = {
-    //   customer_id: user.id,
-    //   drink_id: drink.id
+    const data = {
+      customer_id: user.id,
+      drink_id: drink.id
+    }
 
-    // console.log(drink)
-    // fetch('http://localhost:9292/drinks_orders', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(data),
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //   console.log('Success:', data);
-    // })
-    // .catch((error) => {
-    //   console.log('Error:', error);
-    // });
+    console.log(drink)
+    fetch('http://localhost:9292/drinks_orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.log('Error:', error);
+    });
   }
   return (
     <div>
-      <Navbar user={user} isLoggedIn={isLoggedIn} cartDrinks={cartDrinks} />
+      <Navbar user={user} cartDrinks={cartDrinks} />
   
       <Link exact to="/">
         <div class="ui center aligned header">
@@ -97,7 +105,7 @@ function App() {
         </Route>
 
         <Route exact path ='/login'>
-          <LogInPage setUser={setUser} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+          <LogInPage setUser={setUser} user={user} />
         </Route>
 
         <Route exact path ='/register'>

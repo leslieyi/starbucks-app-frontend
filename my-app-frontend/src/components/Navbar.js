@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import Cart from "./Cart";
 import { Menu } from 'semantic-ui-react'
 
-function Navbar({ isLoggedIn, user, cartDrinks }) {
+function Navbar({ user, cartDrinks }) {
   // const { avatar: avatar, name: name } = user;
   console.log(user)
   return (
