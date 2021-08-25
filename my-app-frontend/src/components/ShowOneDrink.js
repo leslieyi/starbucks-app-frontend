@@ -1,5 +1,6 @@
 import { Card, Image } from "semantic-ui-react";
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function ShowOneDrink({ lmao, user }) {
   const [count, setCount] = useState(0);
@@ -37,7 +38,13 @@ function ShowOneDrink({ lmao, user }) {
         <Card.Description>Ingredients: {lmao.ingredients}</Card.Description>
       </Card.Content>
 
-      <button onClick={() => submitOrder(lmao)}>{count} {lmao.name} Ordered</button>
+      {user? 
+        <button onClick={() => submitOrder(lmao)}>{count} {lmao.name} Ordered</button> :  <Link to="/login">
+        
+        <button>Please Log In to Add to Cart</button> 
+        </Link>
+
+      }
 
     </Card>
     // </div>

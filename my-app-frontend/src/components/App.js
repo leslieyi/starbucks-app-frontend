@@ -8,7 +8,7 @@ import EditProfile from './EditProfile'
 import Register from "./Register";
 import ShowDrinks from "./ShowDrinks";
 import { useState, useEffect } from "react";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch, Link, Redirect} from "react-router-dom";
 import { Header, Segment, Image } from "semantic-ui-react";
 
 //npm i && npm start
@@ -109,7 +109,9 @@ function App() {
           <h1>404 not found</h1>
         </Route>
       </Switch>
+      {user? null: <Redirect to='/login'/>}
     </div>
+    
   );
 }
 

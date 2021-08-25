@@ -1,21 +1,21 @@
 import { NavLink } from "react-router-dom";
-import EditProfile from "./EditProfile"
+import EditProfile from "./EditProfile";
 import { Menu } from "semantic-ui-react";
 
 function Navbar({ user }) {
   return (
     <Menu>
-      <NavLink strict to="/">
-        <Menu.Item>Home</Menu.Item>
-      </NavLink>
       {user ? (
         <>
+          <NavLink strict to="/">
+            <Menu.Item>Home</Menu.Item>
+          </NavLink>
           <img
             alt="random"
             src={user.avatar}
             style={{ width: "40px", height: "40px", justifyContent: "center" }}
           />
-          <NavLink to = "/edit-profile">
+          <NavLink to="/edit-profile">
             <Menu.Item>Hello, {user.name}!</Menu.Item>
           </NavLink>
           <NavLink to="/logout">
@@ -35,7 +35,7 @@ function Navbar({ user }) {
         <>
           <NavLink to="/recent-orders">
             {" "}
-            <Menu.Item> Recent Orders Count </Menu.Item>
+            <Menu.Item> Recent Orders</Menu.Item>
           </NavLink>
         </>
       ) : (
