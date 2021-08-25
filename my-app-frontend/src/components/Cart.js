@@ -2,14 +2,15 @@ import { Card, Image } from 'semantic-ui-react'
 const axios = require('axios');
 
 
-function Cart({ cartDrinks, setCartDrinks }) {
+function Cart({ cartDrinks, user}) {
 
-    function removeFromCart(id) {
-        const newArr = cartDrinks.filter(drink =>{ 
-            return drink.id !== id
-        })
-        // setCartDrinks(newArr)
-    }
+    // function removeFromCart(id) {
+    //     const newArr = cartDrinks.filter(drink =>{ 
+    //         return drink.id !== id
+    //     })
+    //     // setCartDrinks(newArr)
+    // }
+
 
     return (
         <>
@@ -22,11 +23,10 @@ function Cart({ cartDrinks, setCartDrinks }) {
                             <Card.Header>{lmao.name}</Card.Header>
                             <Card.Meta>Price: ${lmao.price}</Card.Meta>
                         </Card.Content>
-                        <button onClick={removeFromCart(lmao.id)}>Remove from cart</button>
+                        {/* <button onClick={removeFromCart(lmao.id)}>Remove from cart</button> */}
                     </Card>
                 )
             }
-
             )}
 
         </>

@@ -33,7 +33,7 @@ function LogInPage({ setUser, user }){
         return (
             <div id = 'login-form-wrapper'>
                 <form onSubmit={handleSubmit}>
-                    <h1>Login</h1>
+                    <h1>Login to Continue our service or Register!</h1>
                     <label>
                         Email:
                         <input

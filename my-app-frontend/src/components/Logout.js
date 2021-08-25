@@ -12,7 +12,7 @@ function Logout({ setUser }) {
       .then((r) => {
         console.log(r);
         setUser(null);
-        history.push("/");
+        history.push("/login");
       });
   }, []);
 

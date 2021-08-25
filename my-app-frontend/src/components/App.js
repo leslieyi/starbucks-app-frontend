@@ -8,7 +8,7 @@ import Logout from './Logout'
 import Register from './Register'
 import ShowDrinks from './ShowDrinks'
 import { useState, useEffect } from "react";
-import { Route, Switch, Link} from 'react-router-dom';
+import { Route, Switch, Link, Redirect } from 'react-router-dom';
 import { Header, Segment, Image } from 'semantic-ui-react'
 
 //npm i && npm start
@@ -19,14 +19,16 @@ import { Header, Segment, Image } from 'semantic-ui-react'
 function App() {
   const [drinksData, setDrinksData] = useState([]);
   const [cartDrinks, setCartDrinks] = useState([])
-  const [user, setUser] = useState()
-  const [ordersData, setOrdersData] = useState([])
+  const [user, setUser] = useState(localStorage.getItem('user'))
+
+
 
   useEffect(() => {
     fetch("http://localhost:9292/me", {credentials: "include"})
     .then((r) => r.json())
     .then((data) => {
       setUser(data.user)
+      localStorage.setItem('user', data.user)
     })
   }, [])
 
@@ -35,20 +37,21 @@ function App() {
       .then((r) => r.json())
       .then((data) => {
         setDrinksData(data);
+        
       });
   }, []);
 
-  useEffect(() => {
-    if(user){
-      // Everytime ruby needs to know who is logged in, 
-      // we need {credentials: "include"}
-      fetch("http://localhost:9292/orders", {credentials: "include"})
-        .then((r) => r.json())
-        .then((data) => {
-          setOrdersData(data);
-        });
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if(user){
+  //     // Everytime ruby needs to know who is logged in, 
+  //     // we need {credentials: "include"}
+  //     fetch("http://localhost:9292/orders", {credentials: "include"})
+  //       .then((r) => r.json())
+  //       .then((data) => {
+  //         setOrdersData(data);
+  //       });
+  //   }
+  // }, [user]);
 
   
   function makeCart(drink){
@@ -58,22 +61,24 @@ function App() {
       drink_id: drink.id
     }
 
-    console.log(drink)
-    fetch('http://localhost:9292/drinks_orders', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-    })
-    .catch((error) => {
-      console.log('Error:', error);
-    });
+ 
+    // fetch('http://localhost:9292/drinks_orders', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    // .then(response => response.json())
+    // .then(data => {
+    //   console.log('Success:', data);
+    // })
+    // .catch((error) => {
+    //   console.log('Error:', error);
+    // });
   }
+  
+
   return (
     <div>
       <Navbar user={user} cartDrinks={cartDrinks} />
@@ -93,7 +98,7 @@ function App() {
 
       <Switch>
         <Route exact path='/cart'>
-          <Cart cartDrinks= {cartDrinks} setCartDrinks={setCartDrinks}/>
+          <Cart user={user} cartDrinks= {cartDrinks} setCartDrinks={setCartDrinks}/>
         </Route>
 
         <Route exact path ='/'>
@@ -113,14 +118,14 @@ function App() {
           <Register/>
         </Route>
         <Route exact path ='/recent-orders'>
-          <RecentOrders ordersData={ordersData} user={user}/>
+          <RecentOrders user={user}/>
         </Route>
          
 
         <Route exact path = '/drinks/:id'>
           {drinksData.length === 0 ? null :
           <ShowDrinks data = {drinksData} 
-          makeCart={makeCart}/>
+          makeCart={makeCart} cartDrinks={cartDrinks} user={user}/>
           }
         </Route>
 
@@ -128,6 +133,8 @@ function App() {
           <h1>404 not found</h1>
         </Route>
       </Switch>
+      {/* {user ?  : <Redirect to='/login' />} */}
+      
     </div>  
   )
   
