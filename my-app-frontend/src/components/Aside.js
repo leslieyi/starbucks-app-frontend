@@ -1,7 +1,7 @@
 import "semantic-ui-css/semantic.min.css";
 import { Menu } from "semantic-ui-react";
 import { useState, useEffect } from "react";
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Aside({setDrinksData, drinksData}) {
   const [categoryData, setCategoryData] = useState([]);
@@ -24,7 +24,7 @@ function Aside({setDrinksData, drinksData}) {
             {drinksData
               .filter((drink) => drink.category_id === category.id)
               .map((drink) => ( 
-                <NavLink to={`/drinks/${drink.id}`} >
+                <NavLink exact to={`/drinks/${drink.id}`} >
                   <Menu.Item key={drink.index} >{drink.name}</Menu.Item>
                 </NavLink>
               ))}

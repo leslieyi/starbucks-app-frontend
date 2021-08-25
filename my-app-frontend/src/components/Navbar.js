@@ -7,6 +7,7 @@ function Navbar({ isLoggedIn, user, cartDrinks }) {
   console.log(user)
   return (
     <Menu>
+      <NavLink strict to='/'><Menu.Item>Home</Menu.Item></NavLink>
       {user ? 
       <>
       <img src={user.avatar} style={{width: "10px", height: "10px"}}/>
@@ -23,7 +24,6 @@ function Navbar({ isLoggedIn, user, cartDrinks }) {
   
       <NavLink to='/cart'> <Menu.Item>Cart {cartDrinks.length == 0 ? "is Empty" : cartDrinks.length}</Menu.Item></NavLink>
       <NavLink to='/recent-orders'> <Menu.Item>Recent Orders</Menu.Item></NavLink>
-      <NavLink strict to='/'><Menu.Item>Home</Menu.Item></NavLink>
       <NavLink to='/register'> <Menu.Item>Register</Menu.Item></NavLink>
     </Menu>
   );

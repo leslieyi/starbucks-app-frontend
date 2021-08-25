@@ -8,7 +8,7 @@ import Register from './Register'
 import ShowDrinks from './ShowDrinks'
 import { useState, useEffect } from "react";
 import { Route, Switch, Link} from 'react-router-dom';
-import { Header, Segment } from 'semantic-ui-react'
+import { Header, Segment, Image } from 'semantic-ui-react'
 
 //npm i && npm start
 //npm install react-router-dom
@@ -72,12 +72,16 @@ function App() {
     <div>
       <Navbar user={user} isLoggedIn={isLoggedIn} cartDrinks={cartDrinks} />
   
-      <Link to="/">
+      <Link exact to="/">
+        <div class="ui center aligned header">
         <Segment>
-          <Header as='h2' textAlign='center'>
-          ☕~~~Welcome to Starbucks~~~
+          <Header as='h2'>
+          <Image style={{height:"25px", width:"25px", float: "left"}} src="https://img.icons8.com/ios-filled/50/000000/coffee.png"/>
+          Welcome to Spill the Beans
           </Header>
         </Segment>
+
+        </div>
       </Link>
       <Aside setDrinksData={setDrinksData} drinksData={drinksData}/>
 
@@ -104,7 +108,7 @@ function App() {
         </Route>
          
 
-        <Route path = '/drinks/:id'>
+        <Route exact path = '/drinks/:id'>
           {drinksData.length === 0 ? null :
           <ShowDrinks data = {drinksData} 
           makeCart={makeCart}/>
