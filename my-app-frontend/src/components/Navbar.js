@@ -12,7 +12,7 @@ function Navbar({ user, cartDrinks }) {
       <>
       <img src={user.avatar} style={{width: "40px", height: "40px", justifyContent: "center"}}/>
         <Menu.Item>Hello, {user.name}!</Menu.Item>
-        <Menu.Item>Logout</Menu.Item>
+        <NavLink to="/logout"><Menu.Item>Logout</Menu.Item></NavLink>
       </>
       :
       <>

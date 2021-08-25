@@ -4,6 +4,7 @@ import Aside from "./Aside"
 import Cart from './Cart';
 import RecentOrders from './RecentOrders';
 import LogInPage from './LogInPage'
+import Logout from './Logout'
 import Register from './Register'
 import ShowDrinks from './ShowDrinks'
 import { useState, useEffect } from "react";
@@ -103,6 +104,9 @@ function App() {
 
         <Route exact path ='/login'>
           <LogInPage setUser={setUser} user={user} />
+        </Route>
+        <Route exact path ='/logout'>
+          <Logout setUser={setUser} />
         </Route>
 
         <Route exact path ='/register'>
