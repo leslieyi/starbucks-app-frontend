@@ -10,7 +10,7 @@ function Navbar({ user, cartDrinks }) {
       <NavLink strict to='/'><Menu.Item>Home</Menu.Item></NavLink>
       {user ? 
       <>
-      <img src={user.avatar} style={{width: "10px", height: "10px"}}/>
+      <img src={user.avatar} style={{width: "40px", height: "40px", justifyContent: "center"}}/>
         <Menu.Item>Hello, {user.name}!</Menu.Item>
         <Menu.Item>Logout</Menu.Item>
       </>
