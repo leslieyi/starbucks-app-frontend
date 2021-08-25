@@ -27,9 +27,9 @@ function ShowOneDrink({ lmao, user }) {
   }
 
   return (
-    // <div class="ui centered card">
+    <div class="ui centered card"  style={{marginTop:"90px", marginLeft:"43%"}}>
 
-    <Card>
+    <Card >
       <Image alt={"coffee"} src={lmao.url} />
       <Card.Content>
         <Card.Header>{lmao.name}</Card.Header>
@@ -45,9 +45,8 @@ function ShowOneDrink({ lmao, user }) {
         </Link>
 
       }
-
     </Card>
-    // </div>
+    </div>
   );
 }
 

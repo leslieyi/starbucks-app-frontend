@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
+import { Form, Button, Header } from "semantic-ui-react";
 const axios = require('axios');
 
 function LogInPage({ setUser, user }){
@@ -31,14 +32,16 @@ function LogInPage({ setUser, user }){
         )
     }else{
         return (
-            <div id = 'login-form-wrapper'>
-                <form onSubmit={handleSubmit}>
-                    <h1>Login to Continue our service or Register!</h1>
+            <div id = 'login-form-wrapper' style={{width:'40%' , float:'left'}}>
+                <Form onSubmit={handleSubmit} floated='right'>
+                    <Form.Field>
+                    <Header as="h2">Login to Continue our service or Register!</Header>
                     <label>
                         Email:
                         <input
                         name="email"
                         type="email"
+                        placeholder="email"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                         required />
@@ -50,13 +53,15 @@ function LogInPage({ setUser, user }){
                         <input
                         name="password"
                         type="password"
+                        placeholder='password'
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                         required />
                     </label>
 
-                    <button>Submit</button>
-                </form>
+                    <Button>Submit</Button>
+                    </Form.Field>
+                </Form>
             </div>
         )
     }

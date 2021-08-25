@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
+import { Button, Form } from 'semantic-ui-react'
+
 const axios = require("axios");
 
 export default function Register() {
@@ -35,8 +37,11 @@ export default function Register() {
     return <Redirect to="/login" />;
   } else {
     return (
-      <div id="register-form-wrapper">
-        <form onSubmit={handleSubmit}>
+      <div style={{width:'40%' , float:'left'}} >
+
+
+      <Form floated='right'>
+        <Form.Field onSubmit={handleSubmit}>
           <h1>Register</h1>
           <label>
             First Name:
@@ -46,6 +51,7 @@ export default function Register() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
+              placeholder="First Name"
             />
           </label>
 
@@ -56,6 +62,7 @@ export default function Register() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
               required
             />
           </label>
@@ -67,6 +74,7 @@ export default function Register() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
               required
             />
           </label>
@@ -78,11 +86,13 @@ export default function Register() {
               type="text"
               value={avatar}
               onChange={(e) => setAvatar(e.target.value)}
+              placeholder="Avatar"
             />
           </label>
 
-          <button>Submit</button>
-        </form>
+          <Button>Submit</Button>
+        </Form.Field>
+      </Form>
       </div>
     );
   }

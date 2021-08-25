@@ -4,12 +4,13 @@ import Aside from "./Aside";
 import RecentOrders from "./RecentOrders";
 import LogInPage from "./LogInPage";
 import Logout from "./Logout";
-import EditProfile from './EditProfile'
+import EditProfile from "./EditProfile";
 import Register from "./Register";
 import ShowDrinks from "./ShowDrinks";
 import { useState, useEffect } from "react";
-import { Route, Switch, Link, Redirect} from "react-router-dom";
+import { Route, Switch, Link, Redirect } from "react-router-dom";
 import { Header, Segment, Image } from "semantic-ui-react";
+import "semantic-ui-css/semantic.min.css";
 
 //npm i && npm start
 //npm install react-router-dom
@@ -56,11 +57,10 @@ function App() {
 
   return (
     <div>
-      <Navbar user={user} cartDrinks={cartDrinks} />
-
-      <Link exact to="/">
-        <div class="ui center aligned header">
-          <Segment>
+      <Navbar user={user} cartDrinks={cartDrinks} style={{marginBottom:"0px", paddingBottom:"0px"}}/>
+      <Segment style={{marginTop: '0px'}}>
+        <Link exact to="/">
+          <div class="ui center aligned header">
             <Header as="h2">
               <Image
                 style={{ height: "25px", width: "25px", float: "left" }}
@@ -68,9 +68,9 @@ function App() {
               />
               Welcome to Spill the Beans
             </Header>
-          </Segment>
-        </div>
-      </Link>
+          </div>
+        </Link>
+      </Segment>
       <Aside setDrinksData={setDrinksData} drinksData={drinksData} />
 
       <Switch>
@@ -89,10 +89,7 @@ function App() {
           <Register />
         </Route>
         <Route exact path="/recent-orders">
-          <RecentOrders
-            user={user}
-      
-          />
+          <RecentOrders user={user} />
         </Route>
 
         <Route exact path="/drinks/:id">
@@ -102,16 +99,15 @@ function App() {
         </Route>
 
         <Route exact path="/edit-profile">
-            <EditProfile user={user} setUser={setUser}/>
+          <EditProfile user={user} setUser={setUser} />
         </Route>
 
         <Route path="*">
           <h1>404 not found</h1>
         </Route>
       </Switch>
-      {user? null: <Redirect to='/login'/>}
+      {user ? null : <Redirect to="/login" />}
     </div>
-    
   );
 }
 

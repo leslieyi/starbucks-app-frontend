@@ -1,10 +1,10 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link, Header,} from "react-router-dom";
 import EditProfile from "./EditProfile";
 import { Menu } from "semantic-ui-react";
 
 function Navbar({ user }) {
   return (
-    <Menu>
+    <Menu style={{marginBottom:"0px", paddingBottom:"0px"}}> 
       {user ? (
         <>
           <NavLink strict to="/">
@@ -44,6 +44,8 @@ function Navbar({ user }) {
           <Menu.Item>Register</Menu.Item>
         </NavLink>
       )}
+
+
     </Menu>
   );
 }

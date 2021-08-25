@@ -18,7 +18,7 @@ function RecentOrders({ user }) {
 
   return (
   
-  <div class="ui centered card">
+  <div class="ui centered card"  style={{marginLeft:"43%"}}>
 
     {ordersData.map((order, index) => {
       return <RenderRecentOrders key={order.id} order={order} index={index} setOrdersData={setOrdersData} ordersData={ordersData} />
