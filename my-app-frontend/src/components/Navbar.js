@@ -5,13 +5,13 @@ import { Menu } from "semantic-ui-react";
 function Navbar({ user }) {
   return (
     <Menu style={{marginBottom:"0px", paddingBottom:"0px"}}> 
-      {user ? (
+      {user? (
         <>
           <NavLink strict to="/">
             <Menu.Item>Home</Menu.Item>
           </NavLink>
           <img
-            alt="random"
+            alt={""}
             src={user.avatar}
             style={{ width: "40px", height: "40px", justifyContent: "center" }}
           />

@@ -40,8 +40,8 @@ export default function Register() {
       <div style={{width:'40%' , float:'left'}} >
 
 
-      <Form floated='right'>
-        <Form.Field onSubmit={handleSubmit}>
+      <Form floated='right' onSubmit={handleSubmit}>
+        <Form.Field >
           <h1>Register</h1>
           <label>
             First Name:

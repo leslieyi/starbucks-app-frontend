@@ -11,6 +11,7 @@ function Logout({ setUser }) {
     })
       .then((r) => {
         console.log(r);
+        localStorage.clear();
         setUser(null);
         history.push("/login");
       });
