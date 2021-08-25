@@ -1,15 +1,7 @@
 import { Card, Image } from 'semantic-ui-react'
-const axios = require('axios');
 
 
-function Cart({ cartDrinks, user}) {
-
-    // function removeFromCart(id) {
-    //     const newArr = cartDrinks.filter(drink =>{ 
-    //         return drink.id !== id
-    //     })
-    //     // setCartDrinks(newArr)
-    // }
+function Cart({ cartDrinks}) {
 
 
     return (

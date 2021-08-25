@@ -6,6 +6,7 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [avatar, setAvatar] = useState('')
   const [successfullyRegistered, setSuccessfullyRegistered] = useState(false);
 
   const handleSubmit = (e) => {
@@ -16,6 +17,7 @@ export default function Register() {
         name: name,
         email: email,
         password: password,
+        avatar: avatar,
       })
       .then(function (response) {
         if (response.data.error) {
@@ -66,6 +68,16 @@ export default function Register() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+            />
+          </label>
+
+          <label>
+            Avatar URL:
+            <input
+              name="avatar"
+              type="text"
+              value={avatar}
+              onChange={(e) => setAvatar(e.target.value)}
             />
           </label>
 

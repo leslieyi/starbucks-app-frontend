@@ -16,9 +16,9 @@ function Aside({setDrinksData, drinksData}) {
 
 
   return (
-    <Menu vertical floated='left' width={5} key={Math.random()}>
+    <Menu vertical floated='left' width={5} >
       {categoryData.map((category) => (
-        <Menu.Item >
+        <Menu.Item key={Math.random()}>
           <Menu.Header>{category.name}</Menu.Header>
           <Menu.Menu >
             {drinksData

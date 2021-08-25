@@ -1,19 +1,8 @@
 import { Card, Image } from "semantic-ui-react";
-import { useState } from "react";
+import { useState } from 'react'
 
 function ShowOneDrink({ lmao, user }) {
-  //   const [isClicked, setIsClicked] = useState(false);
-  //   function handleAddCart() {
-  //     setIsClicked(!isClicked);
-  //     makeCart(lmao);
-  //   }
-
-  // function warning(){
-  //   alert("please log in to continue our amazing service")
-  // }
-  
-  console.log(lmao.id)
-  console.log(user)
+  const [count, setCount] = useState(0);
   function submitOrder(drink) {
     let data = { customer_id: user.id, drink_id: drink.id };
 
@@ -27,7 +16,13 @@ function ShowOneDrink({ lmao, user }) {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
+        setCount((count => {
+          return  count + 1
+       }))
       });
+    //   setCount((count => {
+    //     return  count + 1
+    //  }))
   }
 
   return (
@@ -42,11 +37,8 @@ function ShowOneDrink({ lmao, user }) {
         <Card.Description>Ingredients: {lmao.ingredients}</Card.Description>
       </Card.Content>
 
-      <button onClick={() => submitOrder(lmao)}>Submit Order</button>
+      <button onClick={() => submitOrder(lmao)}>{count} {lmao.name} Ordered</button>
 
-      {/* <button onClick={handleAddCart}>Add to Cart</button> */}
-
-      {/* //  <button onClick={warning}>Add to Cart</button> */}
     </Card>
     // </div>
   );
