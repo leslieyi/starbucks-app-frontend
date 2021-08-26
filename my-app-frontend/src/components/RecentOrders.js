@@ -14,7 +14,7 @@ function RecentOrders({ user }) {
           setOrdersData(data);
         });
     }
-  }, []);
+  }, [user]);
 
   return (
   

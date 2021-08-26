@@ -52,7 +52,5 @@ export default function RenderRecentOrders({
     
         
     </div>
-    // </div>
-    // </div>
   );
 }

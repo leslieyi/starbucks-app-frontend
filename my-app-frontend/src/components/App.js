@@ -99,7 +99,7 @@ function App() {
           <h1>404 not found</h1>
         </Route>
       </Switch>
-      {user ? null : <Redirect to="/login" />}
+      {/* {user ? null : <Redirect to="/login" />} */}
     </div>
   );
 }

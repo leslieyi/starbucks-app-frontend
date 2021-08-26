@@ -1,11 +1,14 @@
-import { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+
 import { Form, Button, Header } from "semantic-ui-react";
 const axios = require('axios');
 
 function LogInPage({ setUser, user }){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [successfulLogin, setSuccessfulLogin] = useState(false)
+    const history = useHistory();
     
 
     const handleSubmit = (e) => {
@@ -20,17 +23,14 @@ function LogInPage({ setUser, user }){
             }
             else{
                 setUser(response.data)
+                history.push("/");
             }
         })
         .catch(function (error) {
           console.log(error);
         });
     }
-    if(user){
-        return (
-            <Redirect to='/' />
-        )
-    }else{
+    {
         return (
             <div id = 'login-form-wrapper' style={{width:'40%' , float:'left'}}>
                 <Form onSubmit={handleSubmit} floated='right'>
