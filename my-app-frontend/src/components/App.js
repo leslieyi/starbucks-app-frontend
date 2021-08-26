@@ -59,7 +59,7 @@ function App() {
                 style={{ height: "25px", width: "25px", float: "left" }}
                 src={LogoGif}
               />
-              Welcome to Spill the Beans
+              Welcome to Starbooks
             </Header>
           </div>
         </Link>
