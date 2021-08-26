@@ -4,7 +4,7 @@ import { Button, Form } from 'semantic-ui-react'
 
 const axios = require("axios");
 
-export default function Register() {
+export default function Register({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -20,21 +20,22 @@ export default function Register() {
         email: email,
         password: password,
         avatar: avatar,
-      })
+      },{withCredentials: true})
       .then(function (response) {
         if (response.data.error) {
           alert(response.data.error);
         } else {
-          console.log(response);
+          // console.log(response);
+          setUser(response.data);
           setSuccessfullyRegistered(true);
         }
       })
       .catch(function (error) {
-        console.log(error);
+        // console.log(error);
       });
   };
   if (successfullyRegistered) {
-    return <Redirect to="/login" />;
+    return <Redirect to="/" />;
   } else {
     return (
       <div style={{width:'40%' , float:'left'}} >

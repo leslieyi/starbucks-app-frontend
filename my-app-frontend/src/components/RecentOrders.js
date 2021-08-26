@@ -2,7 +2,7 @@ import RenderRecentOrders from './RenderRecentOrders'
 import { useState, useEffect } from "react";
 function RecentOrders({ user }) {
   const [ordersData, setOrdersData] = useState([]);
-  console.log(ordersData);
+  // console.log(ordersData);
 
   useEffect(() => {
     if (user) {
@@ -18,10 +18,10 @@ function RecentOrders({ user }) {
 
   return (
   
-  <div class="ui centered card"  style={{marginLeft:"43%"}}>
+  <div style={{display: 'flex', flexFlow: 'row wrap', marginTop: "90px"}}>
 
     {ordersData.map((order, index) => {
-      return <RenderRecentOrders key={order.id} order={order} index={index} setOrdersData={setOrdersData} ordersData={ordersData} />
+      return <RenderRecentOrders key={Math.random()} order={order} index={index} setOrdersData={setOrdersData} ordersData={ordersData} />
     })}
 
   </div>

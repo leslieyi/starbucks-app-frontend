@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import { Route, Switch, Link, Redirect } from "react-router-dom";
 import { Header, Segment, Image } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
+import LogoGif from "../icons8-coffee.gif";
 
 //npm i && npm start
 //npm install react-router-dom
@@ -19,21 +20,8 @@ import "semantic-ui-css/semantic.min.css";
 
 function App() {
   const [drinksData, setDrinksData] = useState([]);
-  const [cartDrinks, setCartDrinks] = useState([]);
+  
   const [user, setUser] = useState(localStorage.getItem("user"));
-  // const [ordersData, setOrdersData] = useState([]);
-
-  // useEffect(() => {
-  //   if (user) {
-  //     // Everytime ruby needs to know who is logged in,
-  //     // we need {credentials: "include"}
-  //     fetch("http://localhost:9292/orders", { credentials: "include" })
-  //       .then((r) => r.json())
-  //       .then((data) => {
-  //         setOrdersData(data);
-  //       });
-  //   }
-  // }, []);
 
   useEffect(() => {
     fetch("http://localhost:9292/me", { credentials: "include" })
@@ -57,14 +45,19 @@ function App() {
 
   return (
     <div>
-      <Navbar user={user} cartDrinks={cartDrinks} style={{marginBottom:"0px", paddingBottom:"0px"}}/>
-      <Segment style={{marginTop: '0px'}}>
-        <Link exact to="/">
-          <div class="ui center aligned header">
+      <Navbar
+        user={user}
+        // cartDrinks={cartDrinks}
+        style={{ marginBottom: "0px", paddingBottom: "0px" }}
+      />
+      <Segment style={{ marginTop: "0px" }}>
+        <Link to="/">
+          <div className="ui center aligned header"> 
+          {/* CHANGED THIS */}
             <Header as="h2">
               <Image
                 style={{ height: "25px", width: "25px", float: "left" }}
-                src="https://img.icons8.com/ios-filled/50/000000/coffee.png"
+                src={LogoGif}
               />
               Welcome to Spill the Beans
             </Header>
@@ -86,7 +79,7 @@ function App() {
         </Route>
 
         <Route exact path="/register">
-          <Register />
+          <Register setUser={setUser}/>
         </Route>
         <Route exact path="/recent-orders">
           <RecentOrders user={user} />
@@ -94,7 +87,7 @@ function App() {
 
         <Route exact path="/drinks/:id">
           {drinksData.length === 0 ? null : (
-            <ShowDrinks data={drinksData} cartDrinks={cartDrinks} user={user} />
+            <ShowDrinks data={drinksData}  user={user} />
           )}
         </Route>
 

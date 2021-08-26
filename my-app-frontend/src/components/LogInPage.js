@@ -35,7 +35,7 @@ function LogInPage({ setUser, user }){
             <div id = 'login-form-wrapper' style={{width:'40%' , float:'left'}}>
                 <Form onSubmit={handleSubmit} floated='right'>
                     <Form.Field>
-                    <Header as="h2">Login to Continue our service or Register!</Header>
+                    <Header as="h2">Login to Continue Our Service or Register!</Header>
                     <label>
                         Email:
                         <input

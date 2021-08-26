@@ -10,7 +10,7 @@ function Logout({ setUser }) {
       credentials: "include",
     })
       .then((r) => {
-        console.log(r);
+        // console.log(r);
         localStorage.clear();
         setUser(null);
         history.push("/login");

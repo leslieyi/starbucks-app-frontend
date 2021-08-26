@@ -7,7 +7,6 @@ function EditProfile({ user, setUser }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(user.id);
     fetch(`http://localhost:9292/update-avatar/${user.id}`, {
       method: "PATCH",
       headers: {
@@ -21,14 +20,13 @@ function EditProfile({ user, setUser }) {
       .then((user) => setUser(user));
   }
   //const handleSubmit = (e) => e.preventDefault
-  console.log("afte patch", user.id);
+  
   return (
-    <div id="login-form-wrapper" style={{ width: "40%", float: "left" }}>
-      <Form onSubmit={handleSubmit} floated="right">
-        <h1 style={{ marginLeft: "290px" }}>Edit Avatar</h1>
-        <img src={user.avatar} style={{ marginLeft: "200px" }} />
-        <br />
-        <Form.Field>
+    <div className="ui container center aligned" style={{ width: '40%', display: 'flex', marginTop: '5%'}}>
+      <Form onSubmit={handleSubmit}  >
+        <Form.Field >
+        <h3 style={{ textAlign: "center" }}>Edit Avatar</h3>
+        <img alt={"avatar"} src={user.avatar} style={{marginTop:"0px"}}/>
           <label>
             Update Avatar:
             <input

@@ -1,51 +1,80 @@
-import { NavLink, Link, Header,} from "react-router-dom";
-import EditProfile from "./EditProfile";
+import { NavLink} from "react-router-dom";
 import { Menu } from "semantic-ui-react";
 
 function Navbar({ user }) {
   return (
-    <Menu style={{marginBottom:"0px", paddingBottom:"0px"}}> 
-      {user? (
+    <Menu style={{ marginBottom: "0px", paddingBottom: "0px" }}>
+      {user ? (
         <>
-          <NavLink strict to="/">
-            <Menu.Item>Home</Menu.Item>
-          </NavLink>
+          <Menu.Item>
+            <NavLink
+              strict
+              to="/"  style={{ color: "grey" }}
+              activeStyle={{fontWeight: "bold", color: "black"}}>
+              Home
+            </NavLink>
+          </Menu.Item>
           <img
             alt={""}
             src={user.avatar}
             style={{ width: "40px", height: "40px", justifyContent: "center" }}
           />
-          <NavLink to="/edit-profile">
-            <Menu.Item>Hello, {user.name}!</Menu.Item>
-          </NavLink>
-          <NavLink to="/logout">
-            <Menu.Item>Logout</Menu.Item>
-          </NavLink>
+          <Menu.Item>
+            <NavLink
+              to="/edit-profile"
+              style={{ color: "grey" }}
+              activeStyle={{ fontWeight: "bold", color: "black" }}
+            >
+              Hello, {user.name}!
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item>
+            <NavLink
+              to="/logout"
+              style={{ color: "grey" }}
+              activeStyle={{ fontWeight: "bold", color: "black" }}
+            >
+              Logout
+            </NavLink>
+          </Menu.Item>
         </>
       ) : (
         <>
           <Menu.Item>Please Log In</Menu.Item>
-          <NavLink to="/login">
-            <Menu.Item>Login</Menu.Item>
-          </NavLink>
+          <Menu.Item>
+            <NavLink
+              to="/login"
+              style={{ color: "grey" }}
+              activeStyle={{ fontWeight: "bold", color: "black" }}
+            >
+              Login
+            </NavLink>
+          </Menu.Item>
         </>
       )}
 
       {user ? (
         <>
-          <NavLink to="/recent-orders">
-            {" "}
-            <Menu.Item> Recent Orders</Menu.Item>
-          </NavLink>
+          <Menu.Item>
+            <NavLink
+              to="/recent-orders"
+              style={{ color: "grey" }}
+              activeStyle={{ fontWeight: "bold", color: "black" }}
+            >
+              Recent Orders
+            </NavLink>
+          </Menu.Item>
         </>
       ) : (
-        <NavLink to="/register">
-          {" "}
-          <Menu.Item>Register</Menu.Item>
-        </NavLink>
+        <Menu.Item>
+          <NavLink
+            to="/register"
+            style={{ color: "grey" }}
+            activeStyle={{ fontWeight: "bold", color: "black" }}>
+            Register
+          </NavLink>
+        </Menu.Item>
       )}
-
-
     </Menu>
   );
 }

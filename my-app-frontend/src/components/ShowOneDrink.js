@@ -1,13 +1,15 @@
-import { Card, Image } from "semantic-ui-react";
+import { Card, Image, Button } from "semantic-ui-react";
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function ShowOneDrink({ lmao, user }) {
   const [count, setCount] = useState(0);
   function submitOrder(drink) {
+    console.log(user.id)
     let data = { customer_id: user.id, drink_id: drink.id };
 
-    fetch("http://localhost:9292/create_order", {
+    fetch("http://localhost:9292/create_order", { 
+      // credentials: "include",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -16,18 +18,16 @@ function ShowOneDrink({ lmao, user }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+        // console.log("Success:", data);
         setCount((count => {
           return  count + 1
        }))
-      });
-    //   setCount((count => {
-    //     return  count + 1
-    //  }))
-  }
+      })
+      .catch(error => console.log(error));
+    }
 
   return (
-    <div class="ui centered card"  style={{marginTop:"90px", marginLeft:"43%"}}>
+    <div className="ui centered card"  style={{marginTop:"90px", marginLeft:"43%"}}>
 
     <Card >
       <Image alt={"coffee"} src={lmao.url} />
@@ -39,9 +39,9 @@ function ShowOneDrink({ lmao, user }) {
       </Card.Content>
 
       {user? 
-        <button onClick={() => submitOrder(lmao)}>{count} {lmao.name} Ordered</button> :  <Link to="/login">
+        <Button style={{width:"100%"}} onClick={() => submitOrder(lmao)}>{count} {lmao.name} Ordered</Button> :  <Link to="/login">
         
-        <button>Please Log In to Add to Cart</button> 
+        <Button style={{width:"100%"}}>Please Log In to Add to Cart</Button> 
         </Link>
 
       }

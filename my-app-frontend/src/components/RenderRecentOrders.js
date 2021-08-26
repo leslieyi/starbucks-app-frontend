@@ -8,6 +8,7 @@ export default function RenderRecentOrders({
   ordersData,
 }) {
   function handleDelete(id) {
+    console.log(id)
     axios
       .delete(`http://localhost:9292/orders/${id}`, {
         order_id: id,
@@ -23,17 +24,17 @@ export default function RenderRecentOrders({
   }
 
   return (
-    //   <div class="ui grid"> <div class="two wide column"> 
-    <div class="ui container center aligned">
+
+    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center',  marginTop: '50px', marginLeft: '40px', marginBottom: '40px',alignItems: 'center'}}>
          <Card>
-          <Card.Header floated='center' as="h2">Order #{index + 1}</Card.Header>
-          <Card.Meta>
+          <Card.Header style={{textAlign: 'center', marginBottom: '5px'}} as="h2">Order #{index + 1}</Card.Header>
+          <Card.Meta >
             
               {order.drinks.map((drink) => (
-                <div class="ui container center aligned">
+                <div className="ui container center aligned" key={Math.random()}>
                 
 
-                  <Image class="centered" alt={"coffee"} src={drink.url} />
+                  <Image className="centered" alt={"coffee"} src={drink.url} />
                   <Card.Content >
                   <li>{drink.name}</li>
                   </Card.Content>
@@ -43,12 +44,12 @@ export default function RenderRecentOrders({
                 </div>
               ))}
            
-            <Button onClick={() => handleDelete(order.id)}>
+            <Button style={{width:'100%' }}onClick={() => handleDelete(order.id)}>
               Delete Order History
             </Button>
           </Card.Meta>
         </Card>
-        {/* </Card.Content> */}
+    
         
     </div>
     // </div>

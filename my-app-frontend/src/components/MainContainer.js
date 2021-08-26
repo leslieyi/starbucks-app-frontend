@@ -6,7 +6,7 @@ function MainContainer({data}) {
     
     return( 
         <div className = 'drink-container'>
-            <Header as="h3" style={{textAlign: "center"}}>All available drinks! Pick something!</Header>
+            <Header as="h3" style={{textAlign: "center", marginRight:"15%"}}>All available drinks! Pick something!</Header>
         {data.map(drink => {
            return <Drink drink= {drink} key ={drink.id}/>
         })}
