@@ -28,7 +28,7 @@ function EditProfile({ user, setUser }) {
       <Form onSubmit={handleSubmit}  >
         <Form.Field >
         <h3 style={{ textAlign: "center" }}>Edit Avatar</h3>
-        <img alt={"avatar"} src={avatar} style={{marginTop:"0px"}}/>
+        <img alt={"avatar"} src={user? user.avatar : user} style={{marginTop:"0px"}}/>
           <label>
             Update Avatar:
             <input
