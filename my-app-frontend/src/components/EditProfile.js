@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Button } from "semantic-ui-react";
 function EditProfile({ user, setUser }) {
-  // const [email, setEmail] = useState(user.email)
-  const [avatar, setAvatar] = useState(user.avatar);
-  // const [password, setPassword] = useState(user.password)
+  const [avatar, setAvatar] = useState();
+  useEffect(() => {
+    setAvatar(user ? user.avatar : "https://i.stack.imgur.com/y9DpT.jpg")
+  }, [user]);
 
   function handleSubmit(e) {
     e.preventDefault();
+    
     fetch(`http://localhost:9292/update-avatar/${user.id}`, {
       method: "PATCH",
       headers: {
@@ -26,7 +28,7 @@ function EditProfile({ user, setUser }) {
       <Form onSubmit={handleSubmit}  >
         <Form.Field >
         <h3 style={{ textAlign: "center" }}>Edit Avatar</h3>
-        <img alt={"avatar"} src={user.avatar} style={{marginTop:"0px"}}/>
+        <img alt={"avatar"} src={avatar} style={{marginTop:"0px"}}/>
           <label>
             Update Avatar:
             <input
